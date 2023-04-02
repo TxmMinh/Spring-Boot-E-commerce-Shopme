@@ -1,0 +1,10 @@
+package com.shopme.common.entity;
+
+@Entity
+@Table(name = "users")
+public class User {
+	
+	@Id
+	@Generated
+
+}
