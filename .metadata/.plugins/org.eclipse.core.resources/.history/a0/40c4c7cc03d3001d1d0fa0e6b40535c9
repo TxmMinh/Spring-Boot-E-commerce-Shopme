@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minium-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	
-	<title>Create New User</title>
+	<title>Home - Shopme Admin</title>
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css} "/>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css} "/>
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	
@@ -62,24 +64,50 @@
 	</div>
 
 	<div>
-		<h1>Manage Users- Create New User</h1>
+		<h1>Manage Users</h1>
+		<a th:href="@{/users/new}">Create New User</a>
 	</div>
 	
-	<form>
-	<div>
-		<div>
-			<label>Email</label>
-			<div>
-				<input type="email" />
-			</div>
-		</div>
-		
-		<div>
-			<input type="submit" value="Save" class="btn btn-primary" />
-			<input type="button" value="Cancel" class="btn btn-secondary" />
-		</div>
+	<div th:if="${message != null}" class="alert alert-success text-center">
+		[[${message}]]
 	</div>
-	</form>
+	
+	<div>
+		<table class="table table-bordered table-striped table-hover table-responsive-xl">
+			<thead class="thead-dark">
+				<tr>
+					<th>User ID</th>
+					<th>Photos</th>
+					<th>E-mail</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Roles</th>
+					<th>Enabled</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listUsers}">
+					<td>[[${user.id}]]</td>
+					<td><span class="fa-solid fa-image-portrait fa-3x icon-silver"></span></td>
+					<td>[[${user.email}]]</td>
+					<td>[[${user.firstName}]]</td>
+					<td>[[${user.lastName}]]</td>
+					<td>[[${user.roles}]]</td>
+					<td>
+						<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a>
+						<a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark" href=""></a>
+					</td>
+					<td>
+						<a class="fa-solid fa-pen-to-square fa-2x icon-green" href="@{'/users/edit/' + ${user.id}}"
+							title="Edit this user"></a>
+						&nbsp; 
+						<a class="fa-solid fa-trash fa-2x icon-dark" href=""></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	
 	<div class="text-center">
 		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
