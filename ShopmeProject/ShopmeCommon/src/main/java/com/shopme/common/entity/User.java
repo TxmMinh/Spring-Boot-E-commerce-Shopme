@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -130,6 +131,13 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", roles=" + roles + "]";
+	}
+	
+	@Transient // this getter is not mapped to any field in database
+	public String getPhotosImagePath() {
+		if (id == null || photos == null) return "/images/default-user.png";
+		
+		return "/user-photos/" + this.id + "/" + this.photos;
 	}
 		
 }
