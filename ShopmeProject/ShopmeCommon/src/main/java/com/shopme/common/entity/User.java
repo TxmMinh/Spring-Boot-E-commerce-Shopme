@@ -133,11 +133,16 @@ public class User {
 				+ ", roles=" + roles + "]";
 	}
 	
-	@Transient // this getter is not mapped to any field in database
+	@Transient // this getter method is not mapped to any field in database
 	public String getPhotosImagePath() {
 		if (id == null || photos == null) return "/images/default-user.png";
 		
 		return "/user-photos/" + this.id + "/" + this.photos;
+	}
+
+	@Transient
+	public String getFullName() {
+		return firstName + " " + lastName;
 	}
 		
 }
