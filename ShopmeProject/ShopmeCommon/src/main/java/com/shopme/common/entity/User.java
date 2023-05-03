@@ -3,16 +3,7 @@ package com.shopme.common.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -39,7 +30,7 @@ public class User {
 	
 	private boolean enabled;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "users_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
