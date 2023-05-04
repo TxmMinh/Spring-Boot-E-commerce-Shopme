@@ -46,7 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 					.loginPage("/login")
 					.usernameParameter("email") // by default, the username parameter is 'username', but we use the 'email'
-					.permitAll();
+					.permitAll()
+                .and().logout().permitAll();
 	}
 
 	@Override
