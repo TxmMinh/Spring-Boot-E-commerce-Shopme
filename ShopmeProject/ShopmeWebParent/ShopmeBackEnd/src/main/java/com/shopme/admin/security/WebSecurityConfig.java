@@ -47,7 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.loginPage("/login")
 					.usernameParameter("email") // by default, the username parameter is 'username', but we use the 'email'
 					.permitAll()
-                .and().logout().permitAll();
+                .and().logout().permitAll()
+                .and()
+					.rememberMe()
+						.key("AbcDefgHijKlmnOpqrs_1234567890")
+						.tokenValiditySeconds(7 * 24 * 60 * 60);
 	}
 
 	@Override
