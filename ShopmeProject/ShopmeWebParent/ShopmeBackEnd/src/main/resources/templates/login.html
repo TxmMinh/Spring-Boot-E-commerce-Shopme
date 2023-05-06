@@ -7,13 +7,27 @@
 	<title>Login - Shopme Admin</title>
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-	
+
+	<style>
+		.set-footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #343a40;
+			color: #d0cbcb;
+			text-align: center;
+			padding-top: 20px;
+			height: 70px;
+			margin: 0!important;
+		}
+	</style>
 </head>
 <body>
 <div class="container-fluid text-center">
 
 	<div>
-		<img th:src="@{/images/ShopmeAdminBig.png}" />
+		<img th:src="@{/images/ShopmeAdminBig.png}" class="img-fluid"/>
 	</div>
 
 	<form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto">
@@ -40,7 +54,7 @@
 		</div>
 	</form>
 	
-	<div class="text-center">
+	<div class="text-center set-footer">
 		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
 	</div>
 </div>
