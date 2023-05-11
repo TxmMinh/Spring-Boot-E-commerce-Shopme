@@ -20,10 +20,6 @@ After logging into the application, you can access the list of user information.
 
 At the bottom of the page, there is pagination and sorting functionality for the rows based on fields.
 
-<p align="center">
-  <img width="700" src="https://github.com/TxmMinh/OneToMany-Spring-JPA/assets/93864928/c029ca41-dc4f-434c-bb82-170a837b7d8f" alt="cli output"/>
-</p>
-
 You can add a new user with a template screen as follows.
 
 <p align="center">
