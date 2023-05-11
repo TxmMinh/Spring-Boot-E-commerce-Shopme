@@ -9,7 +9,7 @@ The application helps manage user information, with features to add, edit, delet
 On the Login screen, you can enter your account information to log into the application. If your account is disabled, please contact the Admin to activate your account. With the Remember me button, you do not need to log in to your account on subsequent visits.
 
 <p align="center">
-  <img width="700" src="[https://user-images.githubusercontent.com/9840435/60266090-9cf9e180-98e7-11e9-9cac-3afeec349bbc.jp](https://github.com/TxmMinh/OneToMany-Spring-JPA/assets/93864928/c029ca41-dc4f-434c-bb82-170a837b7d8f)g" alt="cli output"/>
+  <img width="700" src="https://github.com/TxmMinh/OneToMany-Spring-JPA/assets/93864928/c029ca41-dc4f-434c-bb82-170a837b7d8f" alt="cli output"/>
 </p>
 
 ## 🚀 Usage
