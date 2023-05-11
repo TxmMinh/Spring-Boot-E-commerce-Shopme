@@ -34,30 +34,7 @@ Generated `README.md`:
   <img width="700" src="https://user-images.githubusercontent.com/9840435/60266090-9cf9e180-98e7-11e9-9cac-3afeec349bbc.jpg" alt="cli output"/>
 </p>
 
-Example of `package.json` with good meta data:
 
-```json
-// The package.json is not required to run README-MD-GENERATOR
-{
-  "name": "readme-md-generator",
-  "version": "0.1.3",
-  "description": "CLI that generates beautiful README.md files.",
-  "author": "Franck Abgrall",
-  "license": "MIT",
-  "homepage": "https://github.com/kefranabg/readme-md-generator#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kefranabg/readme-md-generator.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kefranabg/readme-md-generator/issues"
-  },
-  "engines": {
-    "npm": ">=5.5.0",
-    "node": ">=9.3.0"
-  }
-}
-```
 
 ## 🚀 Usage
 
@@ -83,19 +60,6 @@ npx readme-md-generator -p path/to/my/own/template.md
 
 You can find [ejs README template examples here](https://github.com/kefranabg/readme-md-generator/tree/master/templates).
 
-## Code Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors"><img src="https://opencollective.com/readme-md-generator/contributors.svg?width=890&button=false" /></a>
-
-## Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/readme-md-generator/contribute)]
-
-### Individuals
-
-<a href="https://opencollective.com/readme-md-generator"><img src="https://opencollective.com/readme-md-generator/individuals.svg?width=890"></a>
-
 ### Organizations
 
 Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/readme-md-generator/contribute)]
@@ -110,18 +74,11 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/readme-md-generator/organization/8/website"><img src="https://opencollective.com/readme-md-generator/organization/8/avatar.svg"></a>
 <a href="https://opencollective.com/readme-md-generator/organization/9/website"><img src="https://opencollective.com/readme-md-generator/organization/9/avatar.svg"></a>
 
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome.<br />
-Feel free to check [issues page](https://github.com/kefranabg/readme-md-generator/issues) if you want to contribute.<br />
-[Check the contributing guide](./CONTRIBUTING.md).<br />
-
 ## Author
 
-👤 **Franck Abgrall**
+👤 **Tran Xuan Minh**
 
-- Twitter: [@FranckAbgrall](https://twitter.com/FranckAbgrall)
-- Github: [@kefranabg](https://github.com/kefranabg)
+- Github: [@TxmMinh](https://github.com/TxmMinh?tab=repositories) 
 
 ## Show your support
 
@@ -131,11 +88,4 @@ Please ⭐️ this repository if this project helped you!
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-## 📝 License
-
-Copyright © 2019 [Franck Abgrall](https://github.com/kefranabg).<br />
-This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
-
 ---
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
