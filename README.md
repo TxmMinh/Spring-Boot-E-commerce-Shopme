@@ -16,7 +16,7 @@ On the Login screen, you can enter your account information to log into the appl
 
 Make sure you have:
 * [ Setup Java Development Kit (JDK) ](https://www.oracle.com/tr/java/technologies/downloads/) 
-* [ Setup IntelliJ IDEA ] (https://www.jetbrains.com/idea/download/#section=windows)  
+* [ Setup IntelliJ IDEA ] (https://www.jetbrains.com/idea/download/#section=windows)
 * [ Setup MySql Community Server ](https://dev.mysql.com/downloads/mysql/)
 * Install Git and Maven
 
