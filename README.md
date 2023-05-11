@@ -14,28 +14,21 @@ On the Login screen, you can enter your account information to log into the appl
 
 ## 🚀 Usage
 
-Make sure you have [npx](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since npm `5.2.0`)
+Make sure you have:
+* [ Setup Java Development Kit (JDK) ](https://www.oracle.com/tr/java/technologies/downloads/) installed
+* [ Setup IntelliJ IDEA ] (https://www.jetbrains.com/idea/download/#section=windows)  
+* [ Setup MySql Community Server ](https://dev.mysql.com/downloads/mysql/)
+* Install Git and Maven
 
-Just run the following command at the root of your project and answer questions:
+Certainly, you can use Spring Tool Suite as an alternative to IntelliJ IDEA
 
-```sh
-npx readme-md-generator
-```
+Just run the project in IntelliJ and use this link http://localhost:8080/ShopmeAdmin/  to access the Web application.
 
-Or use default values for all questions (`-y`):
-
-```sh
-npx readme-md-generator -y
-```
-
-Use your own `ejs` README template (`-p`):
-
-```sh
-npx readme-md-generator -p path/to/my/own/template.md
-```
-
-You can find [ejs README template examples here](https://github.com/kefranabg/readme-md-generator/tree/master/templates).
-
+## Technologies used
+* Back-end: Java, Spring MVC, Spring Boot, Spring Security
+* Front-end: Thymeleaf, Bootstrap
+* Database: MySql
+* Tool: IntelliJ IDEA
 
 ## Author
 👤 **Tran Xuan Minh**
