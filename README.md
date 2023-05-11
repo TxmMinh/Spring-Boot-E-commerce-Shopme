@@ -37,7 +37,7 @@ Important note, when you log in with a user that does not have the Admin role, y
 
 Make sure you have:
 * [ Setup Java Development Kit (JDK) ](https://www.oracle.com/tr/java/technologies/downloads/) 
-* [ Setup IntelliJ IDEA ] (https://www.jetbrains.com/idea/download/#section=windows)
+*   Setup IntelliJ IDEA  
 * [ Setup MySql Community Server ](https://dev.mysql.com/downloads/mysql/)
 * Install Git and Maven
 
