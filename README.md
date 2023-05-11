@@ -20,7 +20,7 @@ After logging into the application, you can access the list of user information.
 
 At the bottom of the page, there is pagination and sorting functionality for the rows based on fields.
 
-You can add a new user with a template screen as follows.
+You can edit a user with a template screen as follows.
 
 <p align="center">
   <img width="700" src="https://github.com/TxmMinh/OneToMany-Spring-JPA/assets/93864928/1f60f6db-9622-4f38-99c0-ecc15219c310" alt="cli output"/>
