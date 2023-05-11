@@ -1,5 +1,9 @@
 <h1 align="center">Welcome to User Management Web Application 👋</h1>
 
+## Functionality of the application
+
+The application helps manage user information, with features to add, edit, delete, and view users. The application has authorization and authentication, and only users with the Admin role can access the application.
+
 ## ✨ Demo
 
 <p align="center">
@@ -39,9 +43,5 @@ You can find [ejs README template examples here](https://github.com/kefranabg/re
 ## Show your support
 
 Please ⭐️ this repository if this project helped you!
-
-<a href="https://www.patreon.com/FranckAbgrall">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
 
 ---
