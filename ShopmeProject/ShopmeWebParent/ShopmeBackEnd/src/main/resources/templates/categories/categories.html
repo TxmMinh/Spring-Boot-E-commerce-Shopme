@@ -64,11 +64,12 @@
                     ></a>
                 </td>
                 <td>
-                    <a class="fa-solid fa-pen-to-square fa-2x icon-green" th:href="@{'/users/edit/' + ${cat.id}}"
+                    <a class="fa-solid fa-pen-to-square fa-2x icon-green"
+                       th:href="@{'/categories/edit/' + ${cat.id}}"
                        title="Edit this category"></a>
                     &nbsp;
                     <a class="fa-solid fa-trash fa-2x icon-dark link-delete"
-                       th:href="@{'/users/delete/' + ${cat.id}}"
+                       th:href="@{'/categories/delete/' + ${cat.id}}"
                        th:userId="${cat.id}"
                        title="Delete this category"></a>
                 </td>

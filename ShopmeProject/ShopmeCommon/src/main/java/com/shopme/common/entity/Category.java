@@ -60,7 +60,7 @@ public class Category {
         copyCategory.setName(category.getName());
         copyCategory.setImage(category.getImage());
         copyCategory.setAlias(category.getAlias());
-        copyCategory.setEnabled(copyCategory.isEnabled());
+        copyCategory.setEnabled(category.isEnabled());
 
         return copyCategory;
     }
@@ -141,6 +141,9 @@ public class Category {
 
     @Transient
     public String getImagePath() {
+        if (this.id == null) {
+            return "/images/image-thumbnail.png";
+        }
         return "/category-images/" + this.id + "/" + this.image;
     }
 }
