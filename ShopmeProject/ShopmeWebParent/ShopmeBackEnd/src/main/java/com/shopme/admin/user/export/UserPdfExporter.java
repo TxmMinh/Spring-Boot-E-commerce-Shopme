@@ -3,6 +3,7 @@ package com.shopme.admin.user.export;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.*;
+import com.shopme.admin.AbstractExporter;
 import com.shopme.common.entity.User;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class UserPdfExporter extends AbstractExporter {
     public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "application/pdf", ".pdf");
+        super.setResponseHeader(response, "application/pdf", ".pdf", "users_");
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());

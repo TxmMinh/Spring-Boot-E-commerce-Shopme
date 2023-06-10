@@ -1,7 +1,7 @@
-package com.shopme.admin.user.export;
+package com.shopme.admin.category.export;
 
 import com.shopme.admin.AbstractExporter;
-import com.shopme.common.entity.User;
+import com.shopme.common.entity.Category;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class UserExcelExporter extends AbstractExporter {
+public class CategoryExcelExporter extends AbstractExporter {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public UserExcelExporter() {
+    public CategoryExcelExporter() {
         workbook = new XSSFWorkbook();
     }
 
     private void writeHeaderLine() {
-        sheet = workbook.createSheet("User"); // create a new sheet
+        sheet = workbook.createSheet("Category"); // create a new sheet
         XSSFRow row = sheet.createRow(0);
 
         XSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -28,12 +28,8 @@ public class UserExcelExporter extends AbstractExporter {
         font.setFontHeight(16);
         cellStyle.setFont(font);
 
-        createCell(row, 0, "User Id", cellStyle);
-        createCell(row, 1, "E-mail", cellStyle);
-        createCell(row, 2, "First Name", cellStyle);
-        createCell(row, 3, "Last Name", cellStyle);
-        createCell(row, 4, "Roles", cellStyle);
-        createCell(row, 5, "Enabled", cellStyle);
+        createCell(row, 0, "Category Id", cellStyle);
+        createCell(row, 1, "Category Name", cellStyle);
     }
 
     private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {
@@ -51,11 +47,11 @@ public class UserExcelExporter extends AbstractExporter {
         cell.setCellStyle(style);
     }
 
-    public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "application/octet-stream", ".xlsx", "users_");
+    public void export(List<Category> listCategories, HttpServletResponse response) throws IOException {
+        super.setResponseHeader(response, "application/octet-stream", ".xlsx", "categories_");
 
         writeHeaderLine();
-        writeDataLines(listUsers);
+        writeDataLines(listCategories);
 
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
@@ -63,7 +59,7 @@ public class UserExcelExporter extends AbstractExporter {
         outputStream.close();
     }
 
-    private void writeDataLines(List<User> listUsers) {
+    private void writeDataLines(List<Category> listCategories) {
         int rowindex = 1;
 
         XSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -71,16 +67,14 @@ public class UserExcelExporter extends AbstractExporter {
         font.setFontHeight(14);
         cellStyle.setFont(font);
 
-        for (User user : listUsers) {
+        for (Category category : listCategories) {
+            category.setName(category.getName().replace("--", "  "));
+
             XSSFRow row = sheet.createRow(rowindex++);
             int columnIndex = 0;
 
-            createCell(row, columnIndex++, user.getId(), cellStyle);
-            createCell(row, columnIndex++, user.getEmail(), cellStyle);
-            createCell(row, columnIndex++, user.getFirstName(), cellStyle);
-            createCell(row, columnIndex++, user.getLastName(), cellStyle);
-            createCell(row, columnIndex++, user.getRoles().toString(), cellStyle);
-            createCell(row, columnIndex++, user.isEnabled(), cellStyle);
+            createCell(row, columnIndex++, category.getId(), cellStyle);
+            createCell(row, columnIndex++, category.getName(), cellStyle);
         }
     }
 }
