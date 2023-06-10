@@ -14,11 +14,7 @@
         <a th:href="@{/categories/export/pdf}" class="fas fa-file-pdf fa-2x icon-dark"></a>
     </div>
 
-    <div th:if="${message != null}" class="alert alert-success text-center">
-        [[${message}]]
-    </div>
-
-    <div th:replace="fragments :: search_form('/categories/page/1')"></div>
+    <div th:replace="fragments :: search_form_and_message('/categories/page/1')"></div>
 
     <div class="full-details">
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
@@ -26,10 +22,7 @@
             <tr>
                 <th>ID</th>
                 <th>Category Image</th>
-                <th>
-                    <a class="text-white" th:href="@{'/categories/page/' + ${pageNum} + '?sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Category Name</a>
-                    <span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-                </th>
+                <th th:replace="fragments :: column_link('/categories', 'name', 'Category Name', 'none')"></th>
                 <th class="hideable-column">Alias</th>
                 <th>Enabled</th>
                 <th></th>
@@ -44,10 +37,12 @@
                 <td>[[${cat.name}]]</td>
                 <td class="hideable-column">[[${cat.alias}]]</td>
                 <td>
-                    <div th:replace="fragments :: category_status"/>
+                    <div th:replace="fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})"/>
                 </td>
                 <td>
-                    <div th:replace="fragments :: category_action"/>
+                    <div th:replace="fragments :: edit('category', '/categories/edit/' + ${cat.id})" />
+                    &nbsp;
+                    <div th:replace="fragments :: delete('category', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})" />
                 </td>
             </tr>
             </tbody>
@@ -64,22 +59,11 @@
             <div class="col-8">
                 <div>[[${cat.name}]]</div>
                 <div class="mt-1">
-                    <a th:if="${cat.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-                       th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}"
-                       title="Disable this category"
-                    ></a>
-                    <a th:if="${cat.enabled == false}" class="fas fa-circle fa-2x icon-dark"
-                       th:href="@{'/categories/' + ${cat.id} + '/enabled/true'}"
-                       title="Enable this category"
-                    ></a>
+                    <div th:replace="fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})"/>
                     &nbsp;
-                    <a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/' + ${cat.id}}"
-                       title="Edit this category"></a>
+                    <div th:replace="fragments :: edit('category', '/categories/edit/' + ${cat.id})" />
                     &nbsp;
-                    <a class="fa-solid fa-trash fa-2x icon-dark link-delete"
-                       th:href="@{'/categories/delete/' + ${cat.id}}"
-                       th:entityId="${cat.id}";
-                       title="Delete this category"></a>
+                    <div th:replace="fragments :: delete('category', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})" />
                 </div>
             </div>
             <div>&nbsp;</div>
