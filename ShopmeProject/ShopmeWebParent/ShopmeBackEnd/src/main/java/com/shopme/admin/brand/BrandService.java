@@ -15,5 +15,7 @@ public class BrandService {
         return (List<Brand>) repo.findAll();
     }
 
-
+    public Brand save(Brand brand) {
+        return repo.save(brand);
+    }
 }
