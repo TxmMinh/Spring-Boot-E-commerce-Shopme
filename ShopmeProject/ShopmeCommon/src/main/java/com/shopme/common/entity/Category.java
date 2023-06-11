@@ -32,7 +32,6 @@ public class Category {
     public Category() {
 
     }
-
     public Category(Integer id) {
         this.id = id;
     }
@@ -162,5 +161,10 @@ public class Category {
 
     public void setHasChildren(boolean hasChildren) {
         this.hasChildren = hasChildren;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
