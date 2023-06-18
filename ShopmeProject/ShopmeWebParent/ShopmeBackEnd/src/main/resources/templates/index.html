@@ -6,12 +6,15 @@
 <div class="container-fluid">
 	<div th:replace="navigation :: menu"></div>
 
-	<div class="set-height">
+	<div class="set-height text-center">
 		<h2>Shopme Control Panel</h2>
-		Welcome
-		<a th:href="@{/account}"
-			sec:authentication="principal.fullname"></a>
-		<span sec:authentication="principal.authorities"></span>
+		<div>
+			Welcome
+			<a th:href="@{/account}"
+			   sec:authentication="principal.fullname"></a>
+			<span sec:authentication="principal.authorities"></span>
+		</div>
+		<img alt="Image preview" th:src="@{/images/dashboard.png}" class="img-fluid" />
 	</div>
 	
 	<div th:replace="fragments :: footer"></div>

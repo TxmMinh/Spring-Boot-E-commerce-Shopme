@@ -6,8 +6,9 @@
 <div class="container-fluid">
     <div th:replace="navigation :: menu"></div>
 
-    <div class="set-height m-3">
+    <div class="set-height m-3 text-center">
         <h2>Sorry, you don't have permission to access this page</h2>
+        <img alt="Image preview" th:src="@{/images/403.png}" class="img-fluid" />
     </div>
 
     <div th:replace="fragments :: footer"></div>
