@@ -1,5 +1,6 @@
 package com.shopme.admin.product;
 
+import com.shopme.admin.category.CategoryNotFoundException;
 import com.shopme.common.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,15 @@ public class ProductService {
 
     public void updateProductEnabledStatus(Integer id, boolean enable) {
         repo.updateEnabledStatus(id, enable);
+    }
+
+    public void delete(Integer id) throws ProductNotFoundException {
+        Long countById = repo.countById(id);
+
+        if (countById == null || countById == 0) {
+            throw new ProductNotFoundException("Could not find any product with ID " + id);
+        }
+
+        repo.deleteById(id);
     }
 }
