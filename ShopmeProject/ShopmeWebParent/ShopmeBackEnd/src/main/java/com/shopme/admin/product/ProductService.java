@@ -4,10 +4,12 @@ import com.shopme.common.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
     @Autowired
     private ProductRepository repo;
@@ -48,5 +50,9 @@ public class ProductService {
         }
 
         return "OK";
+    }
+
+    public void updateProductEnabledStatus(Integer id, boolean enable) {
+        repo.updateEnabledStatus(id, enable);
     }
 }
