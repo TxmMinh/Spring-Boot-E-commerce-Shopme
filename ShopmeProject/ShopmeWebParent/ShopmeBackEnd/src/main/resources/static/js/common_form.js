@@ -7,13 +7,14 @@ $(document).ready(function() {
         fileSize = this.files[0].size;
         // alert("File size: " + fileSize);
 
-        if (fileSize > 102400) { // 1MB = 1048576
-            this.setCustomValidity("You must choose an image is less than 100KB!");
+        if (fileSize > MAX_FILE_SIZE) {
+            this.setCustomValidity("You must choose an image is less than " + MAX_FILE_SIZE +" bytes!");
             this.reportValidity(); // the browser prevent the form submit to the server and displaying the error message
         } else {
             this.setCustomValidity("");
             showImageThumbnail(this);
         }
+
     });
 });
 

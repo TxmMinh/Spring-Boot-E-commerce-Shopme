@@ -1,11 +1,14 @@
 package com.shopme.common.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "products")
 public class Product {
     @Id
@@ -234,4 +237,12 @@ public class Product {
         this.images.add(new ProductImage(imageName, this));
     }
 
+    @Transient
+    public String getMainImagePath() {
+        if (id == null || mainImage == null) {
+            return "/images/image-thumbnail.png";
+        }
+
+        return "/product-images/" + this.id + "/" +this.mainImage;
+    }
 }
