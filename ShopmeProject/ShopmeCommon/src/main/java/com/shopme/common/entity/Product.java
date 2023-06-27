@@ -1,14 +1,11 @@
 package com.shopme.common.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "products")
 public class Product {
     @Id
