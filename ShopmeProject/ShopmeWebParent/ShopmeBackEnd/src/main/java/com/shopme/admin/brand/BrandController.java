@@ -64,7 +64,6 @@ public class BrandController {
         return "brands/brands";
     }
 
-
     @GetMapping("/brands/new")
     public String newBrand(Model model) {
         List<Category> listCategories = categoryService.listCategoriesUsedInForm();
