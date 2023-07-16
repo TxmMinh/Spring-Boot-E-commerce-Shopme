@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ShopmeUserDetails implements UserDetails {
+    private static final long serialVersionUID = 1L;
     private User user;
 
     public ShopmeUserDetails(User user) {
@@ -73,4 +74,7 @@ public class ShopmeUserDetails implements UserDetails {
         this.user.setLastName(lastName);
     }
 
+    public boolean hasRole(String roleName) {
+        return user.hasRole(roleName);
+    }
 }

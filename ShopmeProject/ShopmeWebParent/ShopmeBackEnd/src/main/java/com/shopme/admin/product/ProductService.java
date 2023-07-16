@@ -1,7 +1,5 @@
 package com.shopme.admin.product;
 
-import com.shopme.admin.category.CategoryNotFoundException;
-import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -67,6 +65,16 @@ public class ProductService {
         product.setUpdatedTime(new Date());
 
         return repo.save(product);
+    }
+
+    public void saveProductPrice(Product productInForm) {
+        Product productInDB = repo.findById(productInForm.getId()).get();
+
+        productInDB.setCost(productInForm.getCost());
+        productInDB.setPrice(productInForm.getPrice());
+        productInDB.setDiscountPercent(productInForm.getDiscountPercent());
+
+        repo.save(productInDB);
     }
 
     public String checkUnique(Integer id, String name) {
