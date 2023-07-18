@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments :: page_head('Error - Shopme', 'none')"/>
+<body>
+<div class="container-fluid">
+    <div th:replace="navigation :: header_menu"></div>
+
+    <div class="set-height m-3 text-center">
+        <h2>Sorry, you don't have permission to access this page</h2>
+        <img alt="Image preview" th:src="@{/images/403.png}" class="img-fluid" />
+    </div>
+
+    <div th:replace="navigation :: footer_menu"></div>
+</div>
+
+</body>
+</html>
