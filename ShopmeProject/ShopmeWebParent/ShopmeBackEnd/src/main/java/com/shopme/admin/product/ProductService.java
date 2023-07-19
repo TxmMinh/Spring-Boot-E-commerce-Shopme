@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 public class ProductService {
-    public static final int PRODUCT_PER_PAGE = 5;
+    public static final int PRODUCTS_PER_PAGE = 5;
 
     @Autowired
     private ProductRepository repo;
@@ -31,7 +31,7 @@ public class ProductService {
 
         sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
 
-        Pageable pageable = PageRequest.of(pageNum - 1, PRODUCT_PER_PAGE, sort);
+        Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
 
         if (keyword != null && !keyword.isEmpty()) {
             if (categoryId != null && categoryId > 0) {
