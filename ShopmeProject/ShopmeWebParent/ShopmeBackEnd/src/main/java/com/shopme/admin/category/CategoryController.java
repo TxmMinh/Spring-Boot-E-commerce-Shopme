@@ -5,6 +5,7 @@ import com.shopme.admin.category.export.CategoryCsvExporter;
 import com.shopme.admin.category.export.CategoryExcelExporter;
 import com.shopme.admin.category.export.CategoryPdfExporter;
 import com.shopme.common.entity.Category;
+import com.shopme.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
