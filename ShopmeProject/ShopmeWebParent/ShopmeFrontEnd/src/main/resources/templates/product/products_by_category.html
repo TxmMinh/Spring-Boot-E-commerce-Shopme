@@ -19,7 +19,7 @@
 		</th:block>
 	</div>
 
-	<div class="row">&nbsp;</div>
+	<div>&nbsp;</div>
 
 	<div class="row">
 		<th:block th:each="product : ${listProducts}">
@@ -41,6 +41,8 @@
 		</div>
 		</th:block>
 	</div>
+
+	<div>&nbsp;</div>
 
 	<div th:replace="fragments :: pagination('/c/' + ${category.alias}, 'product')"></div>
 
