@@ -142,6 +142,7 @@ function changeFormStateToSelectedCountry() {
     countryCode = dropDownCountry.val().split("-")[1];
     fieldCountryCode.val(countryCode);
 }
+
 function loadCountries() {
     // alert("About loading countries..");
 
