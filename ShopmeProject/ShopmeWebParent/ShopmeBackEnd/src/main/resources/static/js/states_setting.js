@@ -22,7 +22,7 @@ $(document).ready(function () {
     });
 
     dropDownCountry4States.on("change", function () {
-       loadStates4Country();
+        loadStates4Country();
     });
 
     dropDownStates.on("change", function () {
@@ -69,11 +69,11 @@ function loadStates4Country() {
     url = contextPath + "states/list_by_country/" + countryId;
 
     $.get(url, function (responseJSON) {
-       dropDownStates.empty();
+        dropDownStates.empty();
 
-       $.each(responseJSON, function (index, state) {
-          $("<option>").val(state.id).text(state.name).appendTo(dropDownStates);
-       });
+        $.each(responseJSON, function (index, state) {
+            $("<option>").val(state.id).text(state.name).appendTo(dropDownStates);
+        });
     }).done(function () {
         changeFormStateToNew();
         showToastMessage("All states have been loaded for country " + selectedCountry.text());
@@ -104,13 +104,13 @@ function addState() {
     jsonData = {name: stateName, country: {id: countryId, name: countryName}};
 
     $.ajax({
-       type: 'POST',
-       url: url,
-       beforeSend: function (xhr) {
-           xhr.setRequestHeader(csrfHeaderName, csrfValue);
-       },
-       data: JSON.stringify(jsonData),
-       contentType: 'application/json'
+        type: 'POST',
+        url: url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(csrfHeaderName, csrfValue);
+        },
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json'
     }).done(function (stateId) {
         selectNewlyAddedState(stateId, stateName);
         showToastMessage("All states have been loaded for country " + selectedCountry.text());
@@ -177,5 +177,4 @@ function deleteStates() {
         showToastMessage("ERROR: Could not connect to server or server encountered an error");
     });
 }
-
 
