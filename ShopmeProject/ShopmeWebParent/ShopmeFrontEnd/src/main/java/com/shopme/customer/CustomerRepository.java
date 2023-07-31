@@ -1,4 +1,4 @@
-package com.shopme.admin.customer;
+package com.shopme.customer;
 
 import com.shopme.common.entity.Customer;
 import org.springframework.data.jpa.repository.Modifying;
