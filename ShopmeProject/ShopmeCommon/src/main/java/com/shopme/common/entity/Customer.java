@@ -180,4 +180,8 @@ public class Customer {
     public String toString() {
         return "Customers [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ']';
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }
