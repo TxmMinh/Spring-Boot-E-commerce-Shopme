@@ -1,5 +1,6 @@
 package com.shopme.security.oauth;
 
+import com.nimbusds.openid.connect.sdk.AuthenticationRequest;
 import com.shopme.common.entity.AuthenticationType;
 import com.shopme.common.entity.Customer;
 import com.shopme.customer.CustomerService;
@@ -28,16 +29,29 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         String email = oAuth2User.getEmail();
         String countryCode = request.getLocale().getCountry();
         System.out.println("Country code: " + countryCode);
+        String clientName = oAuth2User.getClientName();
 
         System.out.println("OAuth2LoginSuccessHandler: " + name + " | " + email);
+        System.out.println("Client name: " + clientName);
 
+        AuthenticationType authenticationType = getAuthenticationType(clientName);
         Customer customer = customerService.getCustomerByEmail(email);
         if (customer == null) {
-            customerService.addNewCustomerUponOAuthLogin(name, email, countryCode);
+            customerService.addNewCustomerUponOAuthLogin(name, email, countryCode, authenticationType);
         } else {
-            customerService.updateAuthenticationType(customer, AuthenticationType.GOOGLE);
+            customerService.updateAuthenticationType(customer, authenticationType);
         }
 
         super.onAuthenticationSuccess(request, response, authentication);
+    }
+
+    private AuthenticationType getAuthenticationType(String clientName) {
+        if (clientName.equals("Google")) {
+            return AuthenticationType.GOOGLE;
+        } else if (clientName.equals("Facebook")) {
+            return  AuthenticationType.FACEBOOK;
+        } else {
+            return AuthenticationType.DATABASE;
+        }
     }
 }

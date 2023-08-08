@@ -1,7 +1,14 @@
 server:
-  port: 80
+  port: 443
   servlet:
     context-path: /Shopme
+  ssl:
+    enabled: true
+    key-alias: local_ssl
+    key-store: classpath:local-ssl.p12
+    key-store-type: PKCS12
+    key-password: 123456789
+    key-store-password: 123456789
 
 spring:
   datasource:
@@ -15,7 +22,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
-    show-sql: true
+    show-sql: false
 
   security:
     oauth2:
@@ -27,6 +34,12 @@ spring:
             scope:
             - email
             - profile
+          facebook:
+            client-id: 307503405015096
+            client-secret: 977d5246ac27fb09c2f4b4e8cc12af1d
+            scope:
+              - email
+              - public_profile
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
