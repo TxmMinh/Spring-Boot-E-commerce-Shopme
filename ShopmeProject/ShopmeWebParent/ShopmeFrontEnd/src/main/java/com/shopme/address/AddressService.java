@@ -1,0 +1,33 @@
+package com.shopme.address;
+
+import com.shopme.common.entity.Address;
+import com.shopme.common.entity.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Service
+@Transactional
+public class AddressService {
+    @Autowired
+    private AddressRepository repo;
+
+    public List<Address> listAddressBook(Customer customer) {
+        return repo.findByCustomer(customer);
+    }
+
+    public Address save(Address address) {
+        return repo.save(address);
+    }
+
+    public Address get(Integer addressId, Integer customerId) {
+        return repo.findByIdAndCustomer(addressId, customerId);
+    }
+
+    public void delete(Integer addressId, Integer customerId) {
+        repo.deleteByIdAndCustomer(addressId, customerId);
+    }
+
+}

@@ -6,11 +6,10 @@ import com.shopme.common.entity.Customer;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface AddressRepository extends PagingAndSortingRepository<Address, Integer> {
+public interface AddressRepository extends CrudRepository<Address, Integer> {
     public List<Address> findByCustomer(Customer customer);
 
     @Query("SELECT a FROM Address a WHERE a.id = ?1 AND a.customer.id = ?2")
