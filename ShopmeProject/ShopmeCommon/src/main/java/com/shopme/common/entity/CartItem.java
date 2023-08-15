@@ -1,13 +1,11 @@
 package com.shopme.common.entity;
 
+import com.shopme.common.entity.product.Product;
+
 import javax.persistence.*;
 
 @Entity
-public class CartItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+public class CartItem extends IdBasedEntity{
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -19,14 +17,6 @@ public class CartItem {
 
     public CartItem() {
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Product getProduct() {

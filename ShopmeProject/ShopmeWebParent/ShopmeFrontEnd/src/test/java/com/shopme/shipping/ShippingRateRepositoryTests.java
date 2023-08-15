@@ -1,6 +1,7 @@
-package com.shopme.product;
+package com.shopme.shipping;
 
-import com.shopme.common.entity.product.Product;
+import com.shopme.common.entity.Country;
+import com.shopme.common.entity.ShippingRate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -11,16 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class ProductRepositoryTests {
+public class ShippingRateRepositoryTests {
     @Autowired
-    ProductRepository repo;
+    private ShippingRateRepository repo;
 
     @Test
-    public void testFindByAlias() {
-        String alias = "canon-eos-m50";
+    public void testFindByCountryAndState() {
+        Country usa = new Country(234);
+        String state = "New York";
+        ShippingRate shippingRate = repo.findByCountryAndState(usa, state);
 
-        Product product = repo.findByAlias(alias);
-
-        assertThat(product).isNotNull();
+        assertThat(shippingRate).isNotNull();
+        System.out.println(shippingRate);
     }
 }
