@@ -160,21 +160,21 @@ public class OrderRepositoryTests {
         Integer orderId = 19;
         Order order = repo.findById(orderId).get();
 
-        OrderTrack newTrack = new OrderTrack();
-        newTrack.setOrder(order);
-        newTrack.setUpdatedTime(new Date());
-        newTrack.setStatus(OrderStatus.NEW);
-        newTrack.setNotes(OrderStatus.NEW.defaultDescription());
+        OrderTrack pickedTrack = new OrderTrack();
+        pickedTrack.setOrder(order);
+        pickedTrack.setUpdatedTime(new Date());
+        pickedTrack.setStatus(OrderStatus.PICKED);
+        pickedTrack.setNotes(OrderStatus.PICKED.defaultDescription());
 
-        OrderTrack processingTrack = new OrderTrack();
-        processingTrack.setOrder(order);
-        processingTrack.setUpdatedTime(new Date());
-        processingTrack.setStatus(OrderStatus.PROCESSING);
-        processingTrack.setNotes(OrderStatus.PROCESSING.defaultDescription());
+        OrderTrack packagedTrack = new OrderTrack();
+        packagedTrack.setOrder(order);
+        packagedTrack.setUpdatedTime(new Date());
+        packagedTrack.setStatus(OrderStatus.PACKAGED);
+        packagedTrack.setNotes(OrderStatus.PACKAGED.defaultDescription());
 
         List<OrderTrack> orderTracks = order.getOrderTracks();
-        orderTracks.add(newTrack);
-        orderTracks.add(processingTrack);
+        orderTracks.add(pickedTrack);
+        orderTracks.add(packagedTrack);
 
         Order updatedOrder = repo.save(order);
 
