@@ -7,6 +7,7 @@ public enum OrderStatus {
         public String defaultDescription() {
             return "Order was placed by the customer";
         }
+
     },
 
     CANCELLED {
@@ -52,10 +53,10 @@ public enum OrderStatus {
     },
 
     RETURN_REQUESTED {
-      @Override
-      public String defaultDescription() {
-          return "Customer sent request to return purchase";
-      }
+        @Override
+        public String defaultDescription() {
+            return "Customer sent request to return purchase";
+        }
     },
 
     RETURNED {
