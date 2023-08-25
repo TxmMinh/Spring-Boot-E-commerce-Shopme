@@ -2,6 +2,7 @@ package com.shopme.common.entity.product;
 
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
+import com.shopme.common.entity.Constants;
 import com.shopme.common.entity.IdBasedEntity;
 
 import javax.persistence.*;
@@ -240,7 +241,7 @@ public class Product extends IdBasedEntity {
             return "/images/image-thumbnail.png";
         }
 
-        return "/product-images/" + this.id + "/" +this.mainImage;
+        return Constants.S3_BASE_URI + "/product-images/" + this.id + "/" +this.mainImage;
     }
 
     public List<ProductDetail> getDetails() {

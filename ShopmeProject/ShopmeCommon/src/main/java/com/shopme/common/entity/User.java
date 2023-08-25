@@ -116,8 +116,12 @@ public class User extends IdBasedEntity{
 	@Transient // this getter method is not mapped to any field in database
 	public String getPhotosImagePath() {
 		if (id == null || photos == null) return "/images/default-user.png";
-		
-		return "/user-photos/" + this.id + "/" + this.photos;
+
+		// return image from localhost
+		// return "/user-photos/" + this.id + "/" + this.photos;
+
+		// return image from Amazon S3
+		return Constants.S3_BASE_URI + "/user-photos/" + this.id + "/" + this.photos;
 	}
 
 	@Transient
