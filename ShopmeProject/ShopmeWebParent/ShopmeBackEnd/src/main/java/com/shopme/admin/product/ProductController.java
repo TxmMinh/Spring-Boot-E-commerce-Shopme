@@ -1,5 +1,6 @@
 package com.shopme.admin.product;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandService;
 import com.shopme.admin.category.CategoryService;
@@ -105,7 +106,7 @@ public class ProductController {
 
         ProductSaveHelper.saveUploadImages(mainImageMultipart, extraImageMultiparts, savedProduct);
 
-        ProductSaveHelper.deleteExtraImagesWeredRemovedOnForm(product);
+        ProductSaveHelper.deleteExtraImagesWereRemovedOnForm(product);
 
         ra.addFlashAttribute("message", "The product has been saved successfully");
 
@@ -132,11 +133,22 @@ public class ProductController {
                                  RedirectAttributes redirectAttributes) {
         try {
             productService.delete(id);
+
+            // Delete product images in local
+            /**
             String productExtraImageDir = "../product-images/" + id + "/extras";
             String productImageDir = "../product-images/" + id;
 
             FileUploadUtil.removeDir(productExtraImageDir);
             FileUploadUtil.removeDir(productImageDir);
+            **/
+
+            // Delete product images in Amazon S3
+            String productExtraImageDir = "product-images/" + id + "/extras";
+            String productImageDir = "product-images/" + id;
+
+            AmazonS3Util.removeFolder(productExtraImageDir);
+            AmazonS3Util.removeFolder(productImageDir);
 
             redirectAttributes.addFlashAttribute("message", "The product ID " + id + " has been deleted successfully");
         } catch (ProductNotFoundException ex) {

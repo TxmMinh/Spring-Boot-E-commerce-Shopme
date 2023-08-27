@@ -1,5 +1,6 @@
 package com.shopme.admin.product;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.common.entity.product.Product;
 import com.shopme.common.entity.product.ProductImage;
@@ -13,12 +14,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ProductSaveHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductSaveHelper.class);
 
-    static void deleteExtraImagesWeredRemovedOnForm(Product product) {
+    // delete extra image products in local
+    /**
+    static void deleteExtraImagesWereRemovedOnForm(Product product) {
         String extraImageDir = "../product-images/" + product.getId() + "/extras/";
         Path dirPath = Paths.get(extraImageDir);
 
@@ -39,6 +43,23 @@ public class ProductSaveHelper {
             LOGGER.error("Could not list directory: " + dirPath);
         }
     }
+     **/
+
+    // delete extra image products in Amazon S3
+     static void deleteExtraImagesWereRemovedOnForm(Product product) {
+         String extraImageDir = "product-images/" + product.getId() + "/extras";
+         List<String> listObjectKeys = AmazonS3Util.listFolder(extraImageDir);
+
+         for (String objectKey : listObjectKeys) {
+             int lastIndexOfSlash = objectKey.lastIndexOf("/");
+             String fileName = objectKey.substring(lastIndexOfSlash + 1, objectKey.length());
+
+             if (!product.containsImageName(fileName)) {
+                 AmazonS3Util.deleteFile(objectKey);
+                 System.out.println("Deleted extra image: " + objectKey);
+             }
+         }
+     }
 
     static void setExistingExtraImageNames(String[] imageIDs, String[] imageNames, Product product) {
         if (imageIDs == null || imageIDs.length == 0) return;
@@ -75,20 +96,44 @@ public class ProductSaveHelper {
                                   MultipartFile[] extraImageMultiparts, Product savedProduct) throws IOException {
         if (!mainImageMultipart.isEmpty()) {
             String fileName = StringUtils.cleanPath(mainImageMultipart.getOriginalFilename());
-            String uploadDir = "../product-images/" + savedProduct.getId();
 
+            /**
+            // save product images in local
+            String uploadDir = "../product-images/" + savedProduct.getId();
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, mainImageMultipart);
+             **/
+
+            // save product images in Amazon S3
+            String uploadDir = "product-images/" + savedProduct.getId();
+
+            List<String> listObjectKeys = AmazonS3Util.listFolder(uploadDir  + "/");
+            for (String objectKey : listObjectKeys) {
+                if (!objectKey.contains("/extras/")) {
+                    AmazonS3Util.deleteFile(objectKey);
+                }
+            }
+
+            AmazonS3Util.uploadFile(uploadDir, fileName, mainImageMultipart.getInputStream());
         }
 
         if (extraImageMultiparts.length > 0) {
-            String uploadDir = "../product-images/" + savedProduct.getId() + "/extras";
+            // save extra product images in local
+            // String uploadDir = "../product-images/" + savedProduct.getId() + "/extras";
+
+            // save extra product images in Amazon S3
+            String uploadDir = "product-images/" + savedProduct.getId() + "/extras";
 
             for (MultipartFile multipartFile : extraImageMultiparts) {
                 if (multipartFile.isEmpty())  continue;
 
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-                FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+                // save extra product images in local
+                // FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+                // save extra product images in Amazon S3
+                AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
             }
         }
     }

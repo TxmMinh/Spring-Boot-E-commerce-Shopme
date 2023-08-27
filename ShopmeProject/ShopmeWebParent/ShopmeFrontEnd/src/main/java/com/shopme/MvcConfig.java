@@ -7,9 +7,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Configuration
+//@Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+	/**
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// display the category's images in the Web browser
@@ -32,5 +33,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler(logicalPath)
 				.addResourceLocations("file:/" + absolutePath + "/");
 	}
+	**/
 
 }

@@ -1,5 +1,6 @@
 package com.shopme.admin.category;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.category.export.CategoryCsvExporter;
 import com.shopme.admin.category.export.CategoryExcelExporter;
@@ -86,10 +87,19 @@ public class CategoryController {
             category.setImage(fileName);
 
             Category savedCategory = service.save(category);
-            String uploadDir = "../category-images/" + savedCategory.getId();
 
+            /*
+            // save category images in local
+            String uploadDir = "../category-images/" + savedCategory.getId();
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+             */
+
+            // save category images in Amazon S3
+            String uploadDir = "category-images/" + savedCategory.getId();
+            AmazonS3Util.removeFolder(uploadDir);
+            AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
+
         } else {
             service.save(category);
         }
@@ -132,8 +142,16 @@ public class CategoryController {
                              RedirectAttributes redirectAttributes) {
         try {
             service.delete(id);
+
+            /*
+            // Delete category images Folder in local
             String categoryDir = "../category-images/" + id;
             FileUploadUtil.removeDir(categoryDir);
+             */
+
+            // Delete category images Folder in Amazon S3
+            String categoryDir = "category-images/" + id;
+            AmazonS3Util.removeFolder(categoryDir);
 
             redirectAttributes.addFlashAttribute("message", "The category ID " + id + " has been deleted successfully");
         } catch (CategoryNotFoundException ex) {

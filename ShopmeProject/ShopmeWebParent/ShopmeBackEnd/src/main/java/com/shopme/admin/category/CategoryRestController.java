@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CategoryRestController {
+
     @Autowired
     private CategoryService service;
 
     @PostMapping("/categories/check_unique")
-    public String checkUnique(@RequestParam("id") Integer id, @RequestParam("name") String name,
-                              @RequestParam("alias") String alias) {
+    public String checkUnique(@Param("id") Integer id, @Param("name") String name,
+                              @Param("alias") String alias) {
         return service.checkUnique(id, name, alias);
     }
 }

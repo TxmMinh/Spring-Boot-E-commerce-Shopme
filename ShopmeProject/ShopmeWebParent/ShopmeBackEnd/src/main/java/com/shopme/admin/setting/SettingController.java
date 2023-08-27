@@ -1,5 +1,6 @@
 package com.shopme.admin.setting;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.common.entity.Constants;
 import com.shopme.common.entity.Currency;
@@ -64,9 +65,17 @@ public class SettingController {
             String value = "/site-logo/" + fileName;
             settingBag.updateSiteLogo(value);
 
+            /*
+            // save site logo in local
             String uploadDir = "../site-logo/";
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            */
+
+            // save site logo in Amazon S3
+            String uploadDir = "site-logo";
+            AmazonS3Util.removeFolder(uploadDir);
+            AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
         }
     }
 

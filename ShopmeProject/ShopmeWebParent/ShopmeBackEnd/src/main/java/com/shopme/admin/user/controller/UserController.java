@@ -3,6 +3,7 @@ package com.shopme.admin.user.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.admin.user.export.UserCsvExporter;
@@ -76,8 +77,15 @@ public class UserController {
 
 			String uploadDir = "user-photos/" + savedUser.getId();
 
+			/*
+			// save user photos in local
 			FileUploadUtil.cleanDir(uploadDir);
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			 */
+
+			// save user photos in Amazon S3
+			AmazonS3Util.removeFolder(uploadDir);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
 		} else {
 			if (user.getPhotos().isEmpty()) user.setPhotos(null);
 			service.save(user);
@@ -118,6 +126,9 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		try {
 			service.delete(id);
+			String userPhotosDir = "user-photos/" + id;
+			AmazonS3Util.removeFolder(userPhotosDir);
+
 			redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been deleted successfully");
 		} catch (UserNotFoundException ex) {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+	/*
+	// access image from the URL path in local
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// display the user's photos in the Web browser
@@ -38,6 +40,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler(logicalPath)
 				.addResourceLocations("file:/" + absolutePath + "/");
 	}
+	 */
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
